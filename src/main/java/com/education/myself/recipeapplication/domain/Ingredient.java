@@ -3,15 +3,19 @@ package com.education.myself.recipeapplication.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
-public class Notes {
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    private String description;
+    private BigDecimal amount;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
+    @ManyToOne
     private Recipe recipe;
-    @Lob
-    private String recipeNotes;
+
 }

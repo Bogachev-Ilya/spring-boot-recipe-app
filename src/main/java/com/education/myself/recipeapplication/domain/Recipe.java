@@ -3,6 +3,7 @@ package com.education.myself.recipeapplication.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,7 +19,10 @@ public class Recipe {
     private String url;
     private String directions;
 //    private Difficulty difficulty;
+    @Lob
     private Byte[] image;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 }
